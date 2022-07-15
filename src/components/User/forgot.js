@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./style.css";
+import styles from "./styles.module.css";
 const Forgot = () => {
   const [Email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
@@ -11,7 +11,10 @@ const Forgot = () => {
     try {
       const url = `http://localhost:7000/v1/user/forget-password`;
       const { data } = await axios.post(url, { Email });
+      console.log(data.message);
+      setMsg(data.message);
     } catch (error) {
+      console.log(error.response);
       if (
         error.response &&
         error.response.status >= 400 &&
@@ -33,19 +36,19 @@ const Forgot = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="emailid" className="form-label">
-                Email:
+                Enter Registered Email here:
               </label>
               <input
                 type="email"
                 className="form-control"
-                placeholder="Enter your Email"
+                placeholder="Enter your registered Email"
                 name="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={Email}
                 required
               />
-              {error && <div className="error_msg">{error}</div>}
-              {msg && <div className="success_msg">{msg}</div>}
+              {error && <div className={styles.error_msg}>{error}</div>}
+              {msg && <div className={styles.success_msg}>{msg}</div>}
             </div>
             <div className="text-center ">
               <button

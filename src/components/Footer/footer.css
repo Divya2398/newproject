@@ -1,0 +1,33 @@
+.footer-logo {
+  font-size: 28px;
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: rgb(104, 103, 103);
+}
+.sp-logo {
+  color: #33ccff;
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+.footer-link a:link {
+  text-decoration: none;
+  color: rgb(104, 103, 103);
+  font-size: 20px;
+  font-weight: 600;
+}
+.footer-link a:visited {
+  text-decoration: none;
+  color: rgb(104, 103, 103);
+}
+.footer-link a:hover {
+  text-decoration: none;
+  color: #33ccff;
+}
+.footer-bg {
+  background-color: rgb(233, 233, 233);
+}
+.ft-para {
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgb(104, 103, 103);
+}

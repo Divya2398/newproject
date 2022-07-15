@@ -1,0 +1,10 @@
+.carousel-item {
+  height: 24rem;
+  object-fit: cover !important;
+}
+.carousel-caption {
+  font-size: 24px;
+  font-family: Poppins;
+  font-weight: bold;
+  color: rgb(235, 240, 236);
+}

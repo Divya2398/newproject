@@ -1,0 +1,25 @@
+.contact-bg {
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+}
+.text-bg {
+  background-image: url("https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  opacity: 0.8;
+}
+.contact-icon {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #1aa7d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-title {
+  font-size: 28px;
+}
+.cont-para {
+  font-size: 18px;
+  line-height: 1.5;
+}

@@ -1,0 +1,26 @@
+/* adminsidebar */
+
+.adminsidebar {
+  background-color: rgb(88, 85, 85) !important;
+  /* color: aqua; */
+}
+
+.logotitle {
+  color: rgb(156, 150, 150) !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+}
+
+.sidemenu {
+  background-color: rgb(11, 131, 131) !important;
+  border: solid 2px rgb(145, 144, 144);
+  color: aliceblue !important;
+  font-size: 18px !important;
+}
+.adminheader {
+  background-color: rgb(88, 85, 85) !important;
+}
+
+.content-table {
+  font-size: 18px !important;
+}

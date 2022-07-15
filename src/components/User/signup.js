@@ -44,6 +44,7 @@ const Signup = () => {
           alert(Response.data.message);
         } else {
           alert("Registration is successfully completed");
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -57,7 +58,7 @@ const Signup = () => {
         <h2 className="text-center ">Signup</h2>
         <p className="text-start mt-3">
           Please fill in this form to create an account. or
-          <a href="" onClick={() => navigate("/login")}>
+          <a href="" onClick={() => navigate("/")}>
             Login
           </a>
         </p>
