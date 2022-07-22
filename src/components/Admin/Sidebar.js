@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./Admin.css";
-import { Button, Input, Space, Table, Layout, Menu } from "antd";
+import { Button, Input, Space, Table, Layout, Menu, Dropdown } from "antd";
 import React, { useEffect, useState, useRef } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
@@ -10,6 +10,8 @@ import {
   SearchOutlined,
   TeamOutlined,
   WechatOutlined,
+  DownOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 
 import Highlighter from "react-highlight-words";
@@ -42,6 +44,27 @@ const AdminSidebar = () => {
           <PictureOutlined />
           <span>Postlist</span>
           <Link to="/postdetail" />
+        </Menu.Item>
+      </Menu>
+      <Menu mode="inline" className="sidemenu">
+        <Menu.Item key="/reported-post">
+          <FormOutlined />
+          <span>Post Management</span>
+          <Link to="/reported-post" />
+        </Menu.Item>
+      </Menu>
+      <Menu mode="inline" className="sidemenu">
+        <Menu.Item key="/categorylist">
+          <FormOutlined />
+          <span>Categorylist</span>
+          <Link to="/categorylist" />
+        </Menu.Item>
+      </Menu>
+      <Menu mode="inline" className="sidemenu">
+        <Menu.Item key="/addcategory">
+          <FormOutlined />
+          <span>Add Category</span>
+          <Link to="/addcategory" />
         </Menu.Item>
       </Menu>
     </Sider>

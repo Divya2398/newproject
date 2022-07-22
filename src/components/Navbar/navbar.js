@@ -5,6 +5,7 @@ import axios from "axios";
 
 import "./navbar.css";
 const Navbar = () => {
+  const PF = "http://localhost:7000/images/";
   const { user, dispatch } = useContext(Context);
   const Logout = async () => {
     console.log("uuid", user.uuid);
@@ -37,13 +38,14 @@ const Navbar = () => {
               Blog<span className="logo-title">ger</span>
             </a>
             <div className="order-lg-2">
-              <img
-                className="topImg rounded-circle position-relative"
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp"
-                alt="profile"
-              />
+              <Link to={"/profile"}>
+                <img
+                  className="topImg rounded-circle position-relative"
+                  src={PF + user.profilepic}
+                  alt="profile"
+                />
+              </Link>
             </div>
-
             <button
               className="navbar-toggler"
               type="button"
@@ -69,7 +71,7 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="/trems">
-                    TREMS
+                    TERMS
                   </a>
                 </li>
                 <li className="nav-item">

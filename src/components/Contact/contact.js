@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./contact.css";
 
 import Navbar from "../Navbar/navbar";
+import axios from "axios";
 
 const Contact = () => {
+  const [to, setTo] = useState("");
+  const [text, setText] = useState("");
+  const [Name, setName] = useState("");
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+
+    axios
+      .post("http://localhost:7000/v1/user/contact", {
+        to,
+        text,
+        Name,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <div className="container my-5">
@@ -34,16 +54,17 @@ const Contact = () => {
               <div>
                 <i class="fa-solid fa-envelope contact-icon"></i>
                 <h2 className="mt-2  text-white">Email</h2>
-                <p className="cont-para">dazzlingshinne@gmail.com</p>
+                <p className="cont-para">divya.platosys@gmail.com</p>
               </div>
             </div>
             <div className="col-6">
-              <form className="cont-form">
+              <form className="cont-form" onSubmit={handleSubmit}>
                 <div className="my-3">
                   <input
                     type="text"
                     placeholder="FullName"
                     className="form-control border-3 border-info"
+                    onChange={(e) => setName(e.target.value)}
                   ></input>
                 </div>
                 <div className="my-3">
@@ -51,16 +72,21 @@ const Contact = () => {
                     type="email"
                     placeholder="Email"
                     className="form-control border-3 border-info "
+                    onChange={(e) => setTo(e.target.value)}
                   ></input>
                 </div>
                 <div className="my-3">
                   <textarea
                     className="form-control border-3 border-info"
                     placeholder="type your message.."
+                    onChange={(e) => setText(e.target.value)}
                     rows={5}
                   ></textarea>
                 </div>
-                <button className="btn btn-outline-info border-3 w-100">
+                <button
+                  type="submit"
+                  className="btn btn-outline-info border-3 w-100"
+                >
                   SUBMIT
                 </button>
               </form>

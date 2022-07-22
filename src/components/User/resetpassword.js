@@ -24,8 +24,11 @@ const Resetpassword = () => {
   useEffect(() => {
     const Urlverify = async () => {
       try {
-        await axios.get(url);
+        await axios.get(
+          `http://localhost:7000/v1/user/password-reset/${param.id}/${param.token}`
+        );
         setValidUrl(true);
+        console.log(validUrl);
       } catch (error) {
         setValidUrl(false);
       }
@@ -40,7 +43,7 @@ const Resetpassword = () => {
       const { data } = await axios.post(url, { password });
       setMsg(data.message);
       setError("");
-      window.location = "/login";
+      window.location = "/";
     } catch (error) {
       if (
         error.response &&

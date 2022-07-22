@@ -13,13 +13,12 @@ import {
 import { Button, Input, Space, Table, Layout, Menu } from "antd";
 
 import Highlighter from "react-highlight-words";
-import AdminSidebar from "./Sidebar";
-import AdminHeader from "./Header";
+import AdminSidebar from "../Sidebar";
+import AdminHeader from "../Header";
 
 const { Header, Sider, Content } = Layout;
 
-const Adminboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const Categorylist = () => {
   const [data, setData] = useState([]);
 
   //table
@@ -133,44 +132,16 @@ const Adminboard = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "Name",
-      key: "Name",
+      title: "Category Name",
+      dataIndex: "name",
+      key: "name",
       width: "30%",
-
-      // ...getColumnSearchProps("Name"),
-
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "UserName",
-      dataIndex: "UserName",
-      key: "UserName",
-      width: "30%",
-
-      ...getColumnSearchProps("UserName"),
-
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "Email",
-      dataIndex: "Email",
-      key: "Email",
-      width: "30%",
-      ...getColumnSearchProps("Email"),
-    },
-    {
-      title: "Mobilenumber",
-      dataIndex: "Mobilenumber",
-      key: "Mobilenumber",
-      width: "30%",
-      ...getColumnSearchProps("Mobilenumber"),
+      ...getColumnSearchProps("name"),
     },
   ];
-
-  const userlist = () => {
+  const category = () => {
     axios
-      .get("http://localhost:7000/v1/user/all-user")
+      .get("http://localhost:7000/v3/category/all-cat")
       .then((Response) => {
         console.log(Response.data.result);
         setData(Response.data.result);
@@ -180,7 +151,7 @@ const Adminboard = () => {
       });
   };
   useEffect(() => {
-    userlist();
+    category();
   }, []);
   return (
     <div>
@@ -209,4 +180,4 @@ const Adminboard = () => {
   );
 };
 
-export default Adminboard;
+export default Categorylist;

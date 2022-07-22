@@ -8,7 +8,7 @@ const Trems = () => {
       <div className="container my-5 ">
         <div className=" col-sm-10 offset-sm-1 col-lg-10 offset-lg-1 trems-bg p-4">
           <div class=" p-3  text-white back-img">
-            <h1 class="mb-4 h2 text-center  text-white">Trems And Condition</h1>
+            <h1 class="mb-4 h2 text-center  text-white">Terms And Condition</h1>
             <h4 className="text-center text-white">
               Blogger has the following limitations on content storage and
               bandwidth, per user account

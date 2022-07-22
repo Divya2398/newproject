@@ -22,8 +22,9 @@
   margin-left: 12px;
   cursor: pointer;
 }
+
 .spost-report {
-  margin-left: 12px;
+  text-align: center;
   cursor: pointer;
   border-radius: 10px;
   font-size: 15px;
@@ -54,4 +55,52 @@
   margin-left: 20px;
   font-size: 30px;
   font-weight: 600;
+}
+
+.spost-titleinput {
+  margin: 10px;
+  font-size: 28px;
+  text-align: center;
+  color: gray;
+  border-bottom: 1.5px solid rgb(10, 151, 151) !important;
+}
+.spost-titleinput:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.spost-decpinput {
+  border: none;
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgb(194, 104, 19);
+}
+.spost-decpinput:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+.spost-catinput {
+  border: none;
+  font-size: 18px;
+  color: rgb(105, 104, 104);
+  border-bottom: 1.5px solid rgb(10, 151, 151);
+}
+.cat-lable {
+  color: rgb(10, 151, 151) !important;
+  font-weight: 600;
+}
+.parent-b {
+  display: flex;
+
+  justify-content: flex-end;
+}
+.update-b {
+  border: none;
+  background-color: rgb(10, 151, 151);
+  border-radius: 10px;
+  padding: 7px;
+  width: 150px;
+  color: aliceblue;
+  font-size: 20px;
+  cursor: pointer;
 }

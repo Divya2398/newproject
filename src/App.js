@@ -24,7 +24,11 @@ import Adminboard from "./components/Admin/Adminboard";
 import AdminSidebar from "./components/Admin/Sidebar";
 import AdminHeader from "./components/Admin/Header";
 import Postdetail from "./components/Admin/Adminpost/postdetail";
-
+import Categorylist from "./components/Admin/Adminpost/Categorylist";
+import AddCategory from "./components/Admin/Adminpost/Addcat";
+import Reportedpost from "./components/Admin/Adminpost/Reportedpost";
+import Activatepost from "./components/Admin/Adminpost/Activatepost";
+import Inactivatepost from "./components/Admin/Adminpost/Inactivatepost";
 function App() {
   const { user } = useContext(Context);
   return (
@@ -43,21 +47,24 @@ function App() {
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/profile" element={<Settting />} />
           <Route path="/footer" element={<Footer />} />
-
           <Route path="/forgot-password" element={<Forgot />} />
           <Route
             path="/password-reset/:id/:token"
             element={<Resetpassword />}
           />
           <Route path="/posts" element={<Posts />} />
-          <Route path="/singlepost/:uuid" element={<Singlepost />} />
+          <Route path="/singlepost/:_id" element={<Singlepost />} />
           <Route path="/side" element={<Sidebar />} />
           <Route path="/popup" element={<Popup />} />
           <Route path="/admin" element={<Adminboard />} />
           <Route path="/adminsidebar" element={<AdminSidebar />} />
-
           <Route path="/adminheader" element={<AdminHeader />} />
           <Route path="/postdetail" element={<Postdetail />} />
+          <Route path="/categorylist" element={<Categorylist />} />
+          <Route path="/addcategory" element={<AddCategory />} />
+          <Route path="/reported-post" element={<Reportedpost />} />
+          <Route path="/post-active" element={<Activatepost />} />
+          <Route path="/post-inactive" element={<Inactivatepost />} />
         </Routes>
       </Router>
     </>

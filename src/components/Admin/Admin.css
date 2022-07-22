@@ -24,3 +24,57 @@
 .content-table {
   font-size: 18px !important;
 }
+
+/* category style */
+
+.catstyle {
+  border: 2px solid rgb(11, 131, 131) !important;
+  border-radius: 20px;
+}
+.cat-title {
+  color: rgb(17, 168, 168);
+}
+.cat-label {
+  color: rgb(88, 85, 85);
+  font-size: 20px;
+}
+
+/* activepost and inactivepost */
+.active-container {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.activepost-card {
+  width: 400px;
+  margin: auto !important;
+}
+
+.active-title {
+  font-size: 20px;
+  color: gray;
+  text-align: center;
+  padding: 5px;
+}
+
+.active-text {
+  font-size: 18px;
+  color: rgb(214, 170, 25);
+  margin-left: 20px;
+}
+.active-postbtn {
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(25, 175, 175);
+  width: 75%;
+  color: antiquewhite;
+  font-size: 20px;
+  margin-left: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.active-postbtn:hover {
+  background-color: rgb(18, 230, 230);
+}

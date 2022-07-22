@@ -139,7 +139,7 @@ const Postdetail = () => {
       ...getColumnSearchProps("title"),
     },
     {
-      title: "UserName",
+      title: "Posted By",
       dataIndex: "UserName",
       key: "UserName",
       width: "30%",
@@ -148,14 +148,20 @@ const Postdetail = () => {
 
       // render: (text) => <a>{text}</a>,
     },
-
     {
-      title: "PostStatus",
-      dataIndex: "poststatus",
-      key: "poststatus",
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
       width: "30%",
-      render: (text) => String(text),
-      ...getColumnSearchProps("poststatus"),
+      ...getColumnSearchProps("category"),
+    },
+    {
+      title: "Posted On",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      width: "30%",
+      // render: (text) => String(text),
+      // ...getColumnSearchProps("Posted On"),
     },
   ];
   const postlist = () => {

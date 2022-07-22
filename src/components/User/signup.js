@@ -28,6 +28,7 @@ const Signup = () => {
 
   const savedetails = (details) => {
     console.log(details);
+    details.profilepic = "avatar.jpg";
     axios
       .post(
         "http://localhost:7000/v1/user/user-signup",

@@ -13,14 +13,34 @@ import {
 import { Button, Input, Space, Table, Layout, Menu } from "antd";
 
 import Highlighter from "react-highlight-words";
-import AdminSidebar from "./Sidebar";
-import AdminHeader from "./Header";
+import AdminSidebar from "../Sidebar";
+import AdminHeader from "../Header";
 
 const { Header, Sider, Content } = Layout;
 
-const Adminboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const Reportedpost = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+
+  const Reported = () => {
+    axios
+      .get("http://localhost:7000/v2/postApi/reported-post")
+      .then((Response) => {
+        console.log(Response.data.result);
+        setData(Response.data.result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    Reported();
+  }, []);
+
+  // console.log("detail:", detail);
+  // {posts.map((p) => (
+  //   <Postlist allpost={p} />
+  // ))}
 
   //table
   const [searchText, setSearchText] = useState("");
@@ -133,55 +153,49 @@ const Adminboard = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "Name",
-      key: "Name",
+      title: "Reported Post Title",
+      dataIndex: "title",
+      key: "title",
       width: "30%",
-
-      // ...getColumnSearchProps("Name"),
-
-      // render: (text) => <a>{text}</a>,
+      ...getColumnSearchProps("title"),
     },
     {
-      title: "UserName",
+      title: "Posted By",
       dataIndex: "UserName",
       key: "UserName",
       width: "30%",
-
       ...getColumnSearchProps("UserName"),
-
-      // render: (text) => <a>{text}</a>,
     },
     {
-      title: "Email",
-      dataIndex: "Email",
-      key: "Email",
-      width: "30%",
-      ...getColumnSearchProps("Email"),
-    },
-    {
-      title: "Mobilenumber",
-      dataIndex: "Mobilenumber",
-      key: "Mobilenumber",
-      width: "30%",
-      ...getColumnSearchProps("Mobilenumber"),
+      title: "Action",
+      key: "action",
+      render: (_, data) => (
+        <Space size="middle">
+          <button
+            className="bnt btn-info m-2 p-2 rounded-lg"
+            onClick={() => navigate("/post-inactive", { state: { data } })}
+          >
+            InActive
+          </button>
+          <Link to={`/singlepost/${data._id}`}>
+            <button
+              className="bnt btn-info m-2 p-2 rounded-lg"
+              // onClick={hnadleview}
+            >
+              Review
+            </button>
+          </Link>
+          <button
+            className="bnt btn-info m-2 p-2 rounded-lg"
+            onClick={() => navigate("/post-active", { state: { data } })}
+          >
+            Active
+          </button>
+        </Space>
+      ),
     },
   ];
 
-  const userlist = () => {
-    axios
-      .get("http://localhost:7000/v1/user/all-user")
-      .then((Response) => {
-        console.log(Response.data.result);
-        setData(Response.data.result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  useEffect(() => {
-    userlist();
-  }, []);
   return (
     <div>
       <Layout>
@@ -209,4 +223,4 @@ const Adminboard = () => {
   );
 };
 
-export default Adminboard;
+export default Reportedpost;
