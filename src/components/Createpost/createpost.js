@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Context } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Createpost = () => {
   const navigate = useNavigate();
@@ -13,7 +14,6 @@ const Createpost = () => {
   const [category, setCategory] = useState("");
   const [photo, setPhoto] = useState(null);
   const { user } = useContext(Context);
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +35,19 @@ const Createpost = () => {
         )
         .then((res) => {
           console.log(res.data);
-          navigate(`/singlepost/${res.data.result._id}`);
+          if (res.data.status === "success") {
+            Swal.fire({
+              icon: "success",
+              title: "Post Created",
+              background: "#FFFFFF",
+              color: "#00CCFF",
+              width: "300px",
+
+              iconColor: "#00CCFF",
+              confirmButtonColor: "#00CCFF",
+            });
+            navigate(`/singlepost/${res.data.result._id}`);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -54,7 +66,19 @@ const Createpost = () => {
         )
         .then((res) => {
           console.log(res);
-          navigate(`/singlepost/${res.data.result._id}`);
+          if (res.data.status === "success") {
+            Swal.fire({
+              icon: "success",
+              title: "Post Created",
+              background: "#FFFFFF",
+              color: "#00CCFF",
+              width: "300px",
+
+              iconColor: "#00CCFF",
+              confirmButtonColor: "#00CCFF",
+            });
+            navigate(`/singlepost/${res.data.result._id}`);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -66,7 +90,6 @@ const Createpost = () => {
     let data = await axios
       .get("http://localhost:7000/v3/category/all-cat")
       .then((Response) => {
-        // console.log(Response.data.result);
         setCatdata(Response.data.result);
       })
       .catch((error) => {
@@ -135,7 +158,7 @@ const Createpost = () => {
               placeholder="write your story.."
               type="text"
               value={desc}
-              rows={5}
+              rows={12}
               onChange={(e) => setDesc(e.target.value)}
             ></textarea>
           </div>

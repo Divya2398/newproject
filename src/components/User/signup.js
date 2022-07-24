@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 import axios from "axios";
 
@@ -42,9 +43,30 @@ const Signup = () => {
       .then((Response) => {
         console.log(Response.data.status);
         if (Response.data.status === "failure") {
-          alert(Response.data.message);
+          let msg = Response.data.message;
+          Swal.fire({
+            icon: "success",
+            text: { msg },
+            background: "#FFFFFF",
+            color: "#00CCFF",
+            width: "300px",
+            fontsize: "30px",
+            iconColor: "#00CCFF",
+            confirmButtonColor: "#00CCFF",
+          });
+
+          // alert(Response.data.message);
         } else {
-          alert("Registration is successfully completed");
+          Swal.fire({
+            icon: "success",
+            text: "Registration completed",
+            background: "#FFFFFF",
+            color: "#00CCFF",
+            width: "300px",
+            fontsize: "30px",
+            iconColor: "#00CCFF",
+            confirmButtonColor: "#00CCFF",
+          });
           navigate("/");
         }
       })

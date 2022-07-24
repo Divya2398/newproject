@@ -4,6 +4,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar/sidebar";
 import { Context } from "../../Context/Context";
+import Swal from "sweetalert2";
 
 const Singlepost = () => {
   const PF = "http://localhost:7000/images/";
@@ -52,17 +53,47 @@ const Singlepost = () => {
 
   //delete post
   const handledelete = async () => {
-    const remove = await axios
-      .delete("http://localhost:7000/v2/postApi/delete-post/" + path_id, {
-        data: { UserName: user.UserName },
-      })
-      .then((res) => {
-        console.log(res);
-        navigate("/home");
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to delete your post!",
+      icon: "warning",
+      showCancelButton: true,
+      // confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d40000",
+      confirmButtonText: "Yes, Delete it!",
+      background: "#FFFFFF",
+      color: "#00CCFF",
+      width: "300px",
+
+      iconColor: "#00CCFF",
+      confirmButtonColor: "#00CCFF",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const remove = await axios
+          .delete("http://localhost:7000/v2/postApi/delete-post/" + path_id, {
+            data: { UserName: user.UserName },
+          })
+          .then((res) => {
+            console.log(res.data.status);
+            if (res.data.status === "success") {
+              Swal.fire({
+                icon: "success",
+                title: "Post Deleted",
+                background: "#FFFFFF",
+                color: "#00CCFF",
+                width: "300px",
+
+                iconColor: "#00CCFF",
+                confirmButtonColor: "#00CCFF",
+              });
+              navigate("/home");
+            }
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
   };
   //update
   const handleupdate = async () => {
@@ -74,9 +105,22 @@ const Singlepost = () => {
         category,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.status);
+        if (res.data.status === "success") {
+          Swal.fire({
+            icon: "success",
+            title: "Post Updated",
+            background: "#FFFFFF",
+            color: "#00CCFF",
+            width: "300px",
+
+            iconColor: "#00CCFF",
+            confirmButtonColor: "#00CCFF",
+          });
+          setUpdatemode(false);
+        }
+
         // window.location.reload();
-        setUpdatemode(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -85,16 +129,37 @@ const Singlepost = () => {
 
   //report post
   const handlereport = async () => {
-    const report = await axios
-      .put(
-        `http://localhost:7000/v2/postApi/post-report/${post.uuid}/${user.UserName}`
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to report this post!",
+      icon: "warning",
+      showCancelButton: true,
+      // confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d40000",
+      confirmButtonText: "Yes, Report it!",
+      background: "#FFFFFF",
+      color: "#00CCFF",
+      width: "300px",
+
+      iconColor: "#00CCFF",
+      confirmButtonColor: "#00CCFF",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const report = await axios
+          .put(
+            `http://localhost:7000/v2/postApi/post-report/${post.uuid}/${user.UserName}`
+          )
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === "success") {
+              Swal.fire("Reported!", "Admin will take action", "success");
+            }
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
   };
   return (
     <>
@@ -191,7 +256,6 @@ const Singlepost = () => {
             </div>
           ) : null}
         </div>
-
         <div class="col-3">
           <Sidebar></Sidebar>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 // import { GoogleOAuthProvider } from "@react-oauth/google";
 // import { GoogleLogin, googleLogout } from "@react-oauth/google";
 // import FacebookLogin from "react-facebook-login";
@@ -37,19 +37,50 @@ const Login = () => {
           type: "LOGIN_SUCCESS",
           payload: res.data.data,
         });
-
-        alert("Logged in successfully");
+        Swal.fire({
+          icon: "success",
+          text: "Logged in Successfully",
+          background: "#FFFFFF",
+          color: "#00CCFF",
+          width: "300px",
+          fontsize: "30px",
+          iconColor: "#00CCFF",
+          confirmButtonColor: "#00CCFF",
+        });
+        // alert("Logged in successfully");
         if (res.data.data.role === "Admin") {
           navigate("/admin");
         } else {
           navigate("/home");
         }
       } else {
-        alert(res.data.message);
+        let ermsg = res.data.message;
+        Swal.fire({
+          icon: "error",
+          text: ermsg,
+          background: "#FFFFFF",
+          color: "#00CCFF",
+          width: "300px",
+          fontsize: "30px",
+          iconColor: "#00CCFF",
+          confirmButtonColor: "#00CCFF",
+        });
+        // alert(res.data.message);
       }
     } catch (error) {
+      let catermsg = error.response.data.message;
       dispatch({ type: "LOGIN_FAILURE" });
-      alert(error.response.data.message);
+      Swal.fire({
+        icon: "error",
+        text: catermsg,
+        background: "#FFFFFF",
+        color: "#00CCFF",
+        width: "300px",
+        fontsize: "30px",
+        iconColor: "#00CCFF",
+        confirmButtonColor: "#00CCFF",
+      });
+      // alert(error.response.data.message);
       console.log(error);
     }
   };

@@ -6,7 +6,7 @@
   font-family: "Josefin";
 }
 .nav-bg {
-  background-color: rgb(219, 217, 217);
+  background-color: rgb(199, 198, 198);
 }
 
 .topImg {
@@ -28,7 +28,7 @@
 }
 
 nav a:link {
-  color: rgb(77, 77, 77);
+  color: rgb(73, 72, 72) !important;
   font-size: 20px !important;
   font-weight: bold !important;
 }

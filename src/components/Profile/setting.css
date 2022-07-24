@@ -2,6 +2,9 @@
   display: flex;
 }
 
+.swal-style {
+  width: 300px;
+}
 .settingscontainer {
   flex: 9;
   padding: 20px;
@@ -89,4 +92,64 @@
   padding: 6px;
   margin-top: 20px;
   cursor: pointer;
+}
+.profile-text {
+  font-size: 20px;
+}
+.profile-input {
+  font-size: 18px;
+}
+.user-post {
+  width: 42%;
+  margin: 20px 35px;
+}
+.user-post-cont {
+  display: flex;
+  flex-wrap: wrap;
+  border-color: #2ccfdb !important;
+}
+.user-post-img {
+  width: 95%;
+  height: 250px;
+  margin: 10px;
+
+  border-radius: 20px;
+  object-fit: cover;
+}
+.single-post-desc {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #464444;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-left: 5px;
+}
+
+.single-post-title {
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 900;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #3e98c2;
+}
+
+.post-user-date {
+  font-style: italic;
+  font-size: 18px;
+  color: #cf8b1d;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.no-post-st {
+  color: #575555;
+  text-align: center;
 }
