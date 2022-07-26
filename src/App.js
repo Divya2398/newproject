@@ -29,6 +29,7 @@ import AddCategory from "./components/Admin/Adminpost/Addcat";
 import Reportedpost from "./components/Admin/Adminpost/Reportedpost";
 import Activatepost from "./components/Admin/Adminpost/Activatepost";
 import Inactivatepost from "./components/Admin/Adminpost/Inactivatepost";
+import Comment from "./components/Singlepost/Comment";
 function App() {
   const { user } = useContext(Context);
   return (
@@ -54,6 +55,7 @@ function App() {
           />
           <Route path="/posts" element={<Posts />} />
           <Route path="/singlepost/:_id" element={<Singlepost />} />
+          <Route path="/comment" element={<Comment />} />
           <Route path="/side" element={<Sidebar />} />
           <Route path="/popup" element={<Popup />} />
           <Route path="/admin" element={<Adminboard />} />

@@ -16,7 +16,6 @@ const Postlist = ({ allpost }) => {
         <Link to={`/singlepost/${allpost._id}`} className="linkdec">
           <span className="posttitle">{allpost.title}</span>
         </Link>
-
         <span className="postdate">
           {new Date(allpost.createdAt).toDateString()}
         </span>

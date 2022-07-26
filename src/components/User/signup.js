@@ -63,7 +63,7 @@ const Signup = () => {
             background: "#FFFFFF",
             color: "#00CCFF",
             width: "300px",
-            fontsize: "30px",
+
             iconColor: "#00CCFF",
             confirmButtonColor: "#00CCFF",
           });

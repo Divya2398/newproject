@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./contact.css";
-
+import Swal from "sweetalert2";
 import Navbar from "../Navbar/navbar";
 import axios from "axios";
 
@@ -9,20 +9,23 @@ const Contact = () => {
   const [text, setText] = useState("");
   const [Name, setName] = useState("");
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    axios
-      .post("http://localhost:7000/v1/user/contact", {
-        to,
-        text,
-        Name,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    axios.post("http://localhost:7000/v1/user/contact", {
+      to,
+      text,
+      Name,
+    });
+    Swal.fire({
+      icon: "success",
+      title: "Your query has been Submittted to Admin",
+      background: "#FFFFFF",
+      color: "#00CCFF",
+      width: "400px",
+      iconColor: "#00CCFF",
+      confirmButtonColor: "#00CCFF",
+    });
+    window.location.reload();
   };
   return (
     <>

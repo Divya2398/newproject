@@ -3,8 +3,11 @@ import "./single.css";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar/sidebar";
+import Footer from "../Footer/footer";
 import { Context } from "../../Context/Context";
 import Swal from "sweetalert2";
+
+import Comment from "./Comment";
 
 const Singlepost = () => {
   const PF = "http://localhost:7000/images/";
@@ -20,6 +23,8 @@ const Singlepost = () => {
   const [category, setCategory] = useState("");
   const [updatemode, setUpdatemode] = useState(false);
   const [catdata, setCatdata] = useState([]);
+  const [cmt, setCmt] = useState([]);
+  const [text, setText] = useState("");
 
   //category input
   const getcat = async () => {
@@ -152,7 +157,16 @@ const Singlepost = () => {
           .then((res) => {
             console.log(res);
             if (res.data.status === "success") {
-              Swal.fire("Reported!", "Admin will take action", "success");
+              Swal.fire({
+                icon: "success",
+                text: "post reported, Admin will take action",
+                background: "#FFFFFF",
+                color: "#00CCFF",
+                width: "300px",
+                fontsize: "30px",
+                iconColor: "#00CCFF",
+                confirmButtonColor: "#00CCFF",
+              });
             }
           })
           .catch((err) => {
@@ -161,6 +175,37 @@ const Singlepost = () => {
       }
     });
   };
+
+  // comment section
+
+  useEffect(() => {
+    const fetchcmt = async () => {
+      const getcmt = await axios.get(
+        `http://localhost:7000/v4/comments/get-cmt/${path_id}`
+      );
+      console.log(getcmt.data.result);
+      setCmt(getcmt.data.result);
+    };
+    fetchcmt();
+  }, []);
+
+  //comment
+
+  const handlecmt = async () => {
+    const textin = axios.post(
+      `http://localhost:7000/v4/comments/post-comment`,
+      {
+        text: text,
+        Blogger: post.UserName,
+        senderName: user.UserName,
+        Sender: user._id,
+        post_id: post._id,
+        user_profile: user.profilepic,
+      }
+    );
+    window.location.reload();
+  };
+
   return (
     <>
       <div class="row">
@@ -246,7 +291,7 @@ const Singlepost = () => {
               ></textarea>
             </div>
           ) : (
-            <p className="spost-decp m-3">{desc}</p>
+            <p className="spost-decp">{desc}</p>
           )}
           {updatemode ? (
             <div className="w-100 parent-b">
@@ -255,10 +300,61 @@ const Singlepost = () => {
               </button>
             </div>
           ) : null}
+          <div className="cmt-section">
+            <h2 className="cmt-title">Comment Section</h2>
+            <div className="chat-wrapper">
+              <div className="chat-top">
+                {cmt.map((d) => {
+                  return (
+                    <div
+                      className={
+                        post.UserName == d.senderName
+                          ? "message own"
+                          : "message"
+                      }
+                    >
+                      {/* // <div className={own ? "message own" : "message"}> */}
+                      <div className="messageTop">
+                        <img
+                          className="messageimg"
+                          src={PF + d.user_profile}
+                          alt="profile"
+                        />
+                        <p className="message-text">
+                          <span className="user-cmt">@{d.senderName}</span>
+                          <br />
+                          {d.text}
+                        </p>
+                      </div>
+                      {/* <div className="message-bottom">
+                        {new Date(d.createdAt).toDateString()}
+                      </div> */}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="chat-box-bottom">
+                <textarea
+                  className="chatmessage-input"
+                  placeholder="Write your Comments..."
+                  rows={5}
+                  onChange={(e) => setText(e.target.value)}
+                ></textarea>
+                <button
+                  className="chatSubmitbtn btn btn-info"
+                  onClick={handlecmt}
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div class="col-3">
           <Sidebar></Sidebar>
         </div>
+        <Footer></Footer>
       </div>
     </>
   );

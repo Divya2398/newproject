@@ -1,6 +1,7 @@
 .postlist {
   width: 385px;
-  margin: 0px 25px 40px 25px;
+  /* height: 500px; */
+  margin: 0px 25px 25px 25px !important;
   display: flex;
   flex-direction: column;
 }
